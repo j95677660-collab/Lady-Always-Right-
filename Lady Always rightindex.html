@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lady Always Writes ✨</title>
+    <!-- Google Fonts: Cursive Title, Bubbly Buttons, Clean Body -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 🌸 RESET & GLOBAL STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #f3e8ff 100%);
+            min-height: 100vh;
+            color: #4a2e4b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 🦋 FLOATING BACKGROUND DECORATIONS */
+        .decor {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+            user-select: none;
+            pointer-events: none;
+        }
+        .d1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .d2 { top: 25%; right: 8%; animation-delay: 2s; }
+        .d3 { top: 70%; left: 8%; animation-delay: 4s; }
+        .d4 { top: 85%; right: 6%; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* 👑 HEADER SECTION */
+        header {
+            text-align: center;
+            margin: 20px 0 30px;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: #7b4382;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            color: #8a5a88;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 6px 18px;
+            border-radius: 20px;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 🎀 MAIN CONTAINER & BUTTON GRID */
+        .container {
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .grid-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+        }
+
+        /* 💖 GIRLY BUTTON STYLES */
+        .btn-card {
+            font-family: 'Fredoka', sans-serif;
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px dashed #e8a5c8;
+            border-radius: 24px;
+            padding: 20px;
+            font-size: 1.2rem;
+            color: #6a346e;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(138, 90, 136, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .btn-card:hover {
+            transform: translateY(-4px);
+            background: #ffffff;
+            border-color: #c084fc;
+            box-shadow: 0 12px 25px rgba(192, 132, 252, 0.25);
+        }
+
+        .btn-full {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f8 100%);
+            border: 2px solid #f3c4fb;
+        }
+
+        /* 🌸 MODAL / POPUP WINDOWS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(74, 46, 75, 0.4);
+            backdrop-filter: blur(6px);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 30px;
+            width: 100%;
+            max-width: 520px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 3px solid #fce1e4;
+            position: relative;
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 1.8rem;
+            color: #8a5a88;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .modal-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            color: #7b4382;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 💌 FORM STYLES (BUTTON 1) */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #6a346e;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e8dff5;
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border 0.3s;
+            background: #faf7fc;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            border-color: #c084fc;
+            background: #ffffff;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #c084fc 0%, #e8a5c8 100%);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(192, 132, 252, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        /* 💭 QUESTION CARDS (BUTTON 2) */
+        .q-card {
+            background: #fcf8ff;
+            border-left: 4px solid #e8a5c8;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        .q-card h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: #7b4382;
+            margin-bottom: 4px;
+        }
+
+        /* 📜 RULES LIST (BUTTON 3) */
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* ✨ WALL OF LIGHT (BUTTON 4) */
+        .note-card {
+            background: #fdf6ff;
+            border: 1px solid #f3c4fb;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .note-author {
+            font-weight: bold;
+            color: #8a5a88;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        /* 🏷️ CODE NAME VAULT (BUTTON 5) */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #f3e8ff;
+            color: #7b4382;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #e8a5c8;
+            cursor: pointer;
+        }
+
+        .randomizer-box {
+            text-align: center;
+            background: #fff5f8;
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px dashed #e8a5c8;
+        }
+
+        .random-result {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            color: #8a5a88;
+            margin: 10px 0;
+        }
+
+        /* 🌸 FOOTER */
+        footer {
+            margin-top: auto;
+            padding: 25px 0 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8a5a88;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🦋 FLOATING DECORATIONS -->
+    <div class="decor d1">🦋</div>
+    <div class="decor d2">✨</div>
+    <div class="decor d3">🌸</div>
+    <div class="decor d4">🎀</div>
+
+    <!-- 👑 HEADER -->
+    <header>
+        <h1>Lady Always Writes</h1>
+        <div class="subtitle">✨ A safe, quiet corner for your heart & mind ✨</div>
+    </header>
+
+    <!-- 🎀 BUTTON GRID CONTAINER -->
+    <div class="container">
+        <div class="grid-buttons">
+            
+            <!-- BUTTON 1 -->
+            <button class="btn-card" onclick="openModal('modal-write')">
+                <span>💌</span> Dear Lady (Write to Me)
+            </button>
+
+            <!-- BUTTON 2 -->
+            <button class="btn-card" onclick="openModal('modal-questions')">
+                <span>💭</span> Daily Reflection (4 Questions)
+            </button>
+
+            <!-- BUTTON 3 -->
+            <button class="btn-card" onclick="openModal('modal-rules')">
+                <span>📜</span> Safe Space Rules
+            </button>
+
+            <!-- BUTTON 4 -->
+            <button class="btn-card" onclick="openModal('modal-wall')">
+                <span>✨</span> Sisterhood Wall of Light
+            </button>
+
+            <!-- BUTTON 5 (FULL WIDTH) -->
+            <button class="btn-card btn-full" onclick="openModal('modal-vault')">
+                <span>🏷️</span> The Code Name Vault & Generator 🎲
+            </button>
+
+        </div>
+    </div>
+
+    <!-- 🌸 MODAL 1: WRITE TO LADY -->
+    <div class="modal" id="modal-write">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-write')">&times;</button>
+            <div class="modal-title">💌 Dear Lady</div>
+            <p style="font-size: 0.85rem; color: #777; margin-bottom: 15px;">Write down your worries, feelings, or story. Your letter gets sent privately to my inbox and I will write you back.</p>
+            
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <!-- Replace value below with your free Web3Forms access key from web3forms.com -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                
+                <!-- TOP COLUMN: THE LETTER -->
+                <div class="form-group">
+                    <label for="letter">Your Secret Letter / Worries 💖</label>
+                    <textarea id="letter" name="letter" placeholder="Type everything on your heart here..." required></textarea>
+                </div>
+
+                <!-- BOTTOM COLUMN: CODE NAME -->
+                <div class="form-group">
+                    <label for="codename">Your Code Name / Alias 🏷️</label>
+                    <input type="text" id="codename" name="codename" placeholder="e.g. Bean Bun, Sad Face, or custom name" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Send to Lady ✨</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 🌸 MODAL 2: DAILY REFLECTION -->
+    <div class="modal" id="modal-questions">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-questions')">&times;</button>
+            <div class="modal-title">💭 4 Deep Questions for Today</div>
+            <p style="font-size: 0.85rem; color: #777; margin-bottom: 15px;">Take 3 quiet minutes to ask yourself these four gentle questions today:</p>
+
+            <div class="q-card">
+                <h4>1. What made you feel heavy today?</h4>
+                <p style="font-size: 0.85rem;">Acknowledge it without judgment, then take a deep breath out.</p>
+            </div>
+            <div class="q-card">
+                <h4>2. What is one tiny thing you did well?</h4>
+                <p style="font-size: 0.85rem;">Even if it was just waking up, resting, or being gentle with yourself.</p>
+            </div>
+            <div class="q-card">
+                <h4>3. What are you holding onto that isn't yours to carry?</h4>
+                <p style="font-size: 0.85rem;">Someone else's mood, expectations, or opinion?</p>
+            </div>
+            <div class="q-card">
+                <h4>4. What does your heart need right now?</h4>
+                <p style="font-size: 0.85rem;">A glass of water, a quiet moment, or encouraging words?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🌸 MODAL 3: SAFE SPACE RULES -->
+    <div class="modal" id="modal-rules">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-rules')">&times;</button>
+            <div class="modal-title">📜 Sisterhood Rules</div>
+            
+            <div class="rule-item">
+                <span>💖</span>
+                <div><strong>Total Anonymity:</strong> Never share real full names, private phone numbers, or addresses. Use your Code Name!</div>
+            </div>
+            <div class="rule-item">
+                <span>🌸</span>
+                <div><strong>Kindness First:</strong> This is a gentle, safe space. No harsh words, hate speech, or judgment allowed.</div>
+            </div>
+            <div class="rule-item">
+                <span>🎀</span>
+                <div><strong>You Are Worthy:</strong> Every feeling you express here is valid. You never have to apologize for feeling how you feel.</div>
+            </div>
+            <div class="rule-item">
+                <span>✨</span>
+                <div><strong>Patience & Love:</strong> Replies are written with care. Take a deep breath while waiting for your response!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🌸 MODAL 4: WALL OF LIGHT -->
+    <div class="modal" id="modal-wall">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-wall')">&times;</button>
+            <div class="modal-title">✨ Wall of Light</div>
+            <p style="font-size: 0.85rem; color: #777; margin-bottom: 15px;">A collection of anonymous gentle wishes left by girls for whoever visits next.</p>
+
+            <div class="note-card">
+                "Whoever is reading this right now: your soft heart is your greatest strength. Don't let the world make you hard."
+                <div class="note-author">— From 🦋 Silent Butterfly</div>
+            </div>
+            <div class="note-card">
+                "You are going to figure things out, even if it doesn't feel like it today. I believe in you!"
+                <div class="note-author">— From 🎀 Careless Cheerleader</div>
+            </div>
+            <div class="note-card">
+                "Drink a warm cup of tea and stretch your shoulders. You deserve rest, beautiful."
+                <div class="note-author">— From 🌸 Bean Bun</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🌸 MODAL 5: CODE NAME VAULT -->
+    <div class="modal" id="modal-vault">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-vault')">&times;</button>
+            <div class="modal-title">🏷️ The Code Name Vault</div>
+            <p style="font-size: 0.85rem; color: #777; margin-bottom: 15px;">Need an anonymous alias? Pick one from the vault below or click the randomizer button!</p>
+
+            <div class="tag-container">
+                <span class="tag">Bean Bun</span>
+                <span class="tag">Careless Cheerleader</span>
+                <span class="tag">Sad Face</span>
+                <span class="tag">That Boy's Girl</span>
+                <span class="tag">Overthinking Angel</span>
+                <span class="tag">Lavender Dreamer</span>
+                <span class="tag">Quiet Teacup</span>
+                <span class="tag">Midnight Star</span>
+                <span class="tag">Cozy Match</span>
+                <span class="tag">Velvet Rose</span>
+            </div>
+
+            <div class="randomizer-box">
+                <p style="font-size: 0.9rem; font-weight: 500; color: #6a346e;">Can't decide? Generate one!</p>
+                <div class="random-result" id="random-name">✨ Click Roll ✨</div>
+                <button class="submit-btn" style="padding: 10px 20px; font-size: 1rem;" onclick="generateName()">Roll Random Code Name 🎲</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🌸 FOOTER -->
+    <footer>
+        Made with 💖 for <em>Lady Always Writes</em>
+    </footer>
+
+    <!-- 💡 JAVASCRIPT FOR INTERACTIVITY -->
+    <script>
+        // Open Modal Window
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Close Modal Window
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside content box
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Code Name Randomizer
+        const codeNames = [
+            "Bean Bun 🌸", 
+            "Careless Cheerleader 🎀", 
+            "Sad Face 🌧️", 
+            "That Boy's Girl 💌", 
+            "Overthinking Angel ✨", 
+            "Lavender Dreamer 🦋", 
+            "Quiet Teacup 🍵", 
+            "Midnight Star 🌙", 
+            "Cozy Matcha 🍃", 
+            "Velvet Rose 🌹",
+            "Strawberry Milkshake 🍓",
+            "Paper Crane 🕊️"
+        ];
+
+        function generateName() {
+            const randomIndex = Math.floor(Math.random() * codeNames.length);
+            document.getElementById('random-name').innerText = codeNames[randomIndex];
+        }
+    </script>
+</body>
+</html>
